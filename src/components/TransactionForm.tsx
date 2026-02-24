@@ -38,7 +38,15 @@ const TransactionForm = ({ onAddTransaction }: Props) => {
         date: formData.date,
     };
     onAddTransaction(newTransaction);
-    }
+
+    setFormData({
+        description: '',
+        amount: '',
+        category: 'Comida' as Category,
+        date: new Date().toISOString().split('T')[0],
+        type: 'egreso'
+    });
+    };
 
     return (
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px' }}>
