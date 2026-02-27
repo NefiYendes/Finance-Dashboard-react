@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Transaction } from "../types/transaction";
 import TransactionForm from "../components/TransactionForm";
+import TransactionList from "../components/TransactionList";
 
 const Dashboard = () => {
     const [transactions, setTransactions] = useState<Transaction[]> ([
@@ -14,12 +15,17 @@ const Dashboard = () => {
     const addTransaction = (newTx:Transaction) => {
         setTransactions(prev => [newTx, ...prev]);
     };
+    const deleteTransaction = (id: string) =>{
+        const nuevaLista = transactions.filter(item => item.id !== id);
+        setTransactions(nuevaLista);
+    }
     return(
         <div style={{padding: '20px', fontFamily: 'Arial, sans-serif'}}>
             <h1>Mi Dashboard Financiero</h1>
         <section style={{ marginBottom: '30px' }}>
         <h2>Nueva Transacción</h2>
         <TransactionForm onAddTransaction={addTransaction} />
+        <TransactionList transactions={transactions} onDeleteTransaction={deleteTransaction}/>
       </section>
             <div style={{display: 'flex', gap: '20px', marginBottom: '20px'}}>
 
