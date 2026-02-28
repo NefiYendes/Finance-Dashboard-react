@@ -14,7 +14,15 @@ return (
                 {transactions.map((item) => (
                     <li key={item.id} style={{ borderBottom: '1px solid #ddd', padding: '10px 0' }}>
                         <span>{item.description}</span>
-                       
+                    
+                        <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                        <span style={{ fontWeight: 'bold' }}>${item.amount}</span>
+      
+            <button 
+                onClick={() => onDeleteTransaction(item.id)}
+                style={{ backgroundColor: '#ff4d4f', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer',padding: '5px 10px'}}> Eliminar
+            </button>
+    </div>
                     </li>
                 ))}
             </ul>
